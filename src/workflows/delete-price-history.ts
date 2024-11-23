@@ -1,18 +1,26 @@
+/*
+ * Copyright 2024 RSC-Labs, https://rsoftcon.com/
+ *
+ * MIT License
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import {
   createStep,
   createWorkflow,
-  parallelize,
   StepResponse,
   transform,
-  when,
   WorkflowResponse,
 } from "@medusajs/framework/workflows-sdk"
-import { createRemoteLinkStep, dismissRemoteLinkStep, removeRemoteLinkStep } from "@medusajs/medusa/core-flows";
-import { CalculatedPriceSet } from "@medusajs/framework/types"
+import { dismissRemoteLinkStep } from "@medusajs/medusa/core-flows";
 import { Modules } from "@medusajs/framework/utils";
 import PriceHistoryModuleService from "../modules/price-history/service";
 import { PRICE_HISTORY_MODULE } from "src/modules/price-history";
-import { PriceHistoryType } from "src/modules/price-history/types";
 
 const stepDeletePricesHistory = createStep("delete", async ({ pricesHistoriesIds } : { pricesHistoriesIds: string[]}, context) => {
 
