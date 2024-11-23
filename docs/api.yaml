@@ -1,0 +1,58 @@
+openapi: 3.0.1
+info:
+  version: "1.0"
+  title: "Price history"
+  description: |
+   This API provides history of price
+paths:
+  /store/product/{id}/price-history:
+    get:
+      tags:
+      - "price"
+      summary: "Price history for a product"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "Returns list of variants with price histories"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    #Product Variant properties, see variants from: https://docs.medusajs.com/api/store#products_getproductsid
+                    price_histories:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/PriceHistory'
+                  
+                      
+        "400":
+          description: "Not OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+components:
+  schemas:
+    PriceHistory:
+      type: object
+      properties:
+        id:
+          type: string
+        currency_code:
+          type: string
+        amount:
+          type: number
+        #raw_amount: Record<string, string>
+        created_at:
+          type: string
