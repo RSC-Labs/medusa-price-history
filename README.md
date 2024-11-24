@@ -62,3 +62,15 @@ You can update such schedule using environment variable `MEDUSA_PRICE_HISTORY_DE
 ## API
 
 After storing price histories in database, you can fetch them for variants. Plugin exposes one new API - `store/products/[id]/price-history`. After calling this API you will get list of variants with their price histories. Details are here: [Store API](./docs/api.yaml)
+
+## Limitations
+
+Plugin checks the regions and currencies, but it does not check the context (like price rules, customers groups etc.) due to complexity. However, it might be considered as an improvement in the future.
+
+## License
+
+MIT
+
+---
+
+© 2024 RSC https://rsoftcon.com/
