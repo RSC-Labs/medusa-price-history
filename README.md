@@ -6,13 +6,28 @@ Medusa Price History provides functionality which stores older prices for varian
 
 ## Installation
 
-### Plugin system
+1. Install plugin by adding to your `package.json`:
 
-Plugins are not yet supported in Medusa 2.0, so this part is TODO.
+**Warning**
 
-### Copy the code
+```json
+...
+"@rsc-labs/medusa-price-history": "0.0.3"
+...
+```
+and execute install, e.g. `yarn install`.
 
-You can copy the code from /src into your Medusa project.
+2. Add plugin to your `medusa-config.js` with the licence key, which you received:
+
+```js
+...
+plugins: [
+    {
+      resolve: "@rsc-labs/medusa-price-history",
+    }
+]
+...
+```
 
 ### Database migration
 
@@ -43,14 +58,6 @@ Plugin uses scheduled job to clean up the old entries in price histories. It use
 {
   // Only if the plugin system will work
   resolve: "@rsc-labs/medusa-price-history"
-  options:
-    ageInDays: 30
-}
-```
-```js
-{
-  // If you copied the code
-  resolve: "./modules/price-history"
   options:
     ageInDays: 30
 }

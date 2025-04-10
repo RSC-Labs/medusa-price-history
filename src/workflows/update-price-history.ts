@@ -15,12 +15,11 @@ import {
   createWorkflow,
   StepResponse,
   transform,
-  when,
   WorkflowResponse,
 } from "@medusajs/framework/workflows-sdk"
 import { createRemoteLinkStep } from "@medusajs/medusa/core-flows";
 import { CalculatedPriceSet } from "@medusajs/framework/types"
-import { Modules } from "@medusajs/framework/utils";
+import { BigNumber, Modules } from "@medusajs/framework/utils";
 import PriceHistoryModuleService from "../modules/price-history/service";
 import { PRICE_HISTORY_MODULE } from "src/modules/price-history";
 
@@ -32,7 +31,7 @@ const stepCreatePricesHistory = createStep("create", async ({ calculatedPriceSet
   const pricesHistories = await priceHistoryModuleService.createPriceHistories(calculatedPriceSets.map(calcPriceSet => {
     return {
       currency_code: calcPriceSet.currency_code,
-      amount: calcPriceSet.calculated_amount,
+      amount: new BigNumber(calcPriceSet.calculated_amount).bigNumber,
       raw_amount: calcPriceSet.raw_calculated_amount,
     }
   }))
